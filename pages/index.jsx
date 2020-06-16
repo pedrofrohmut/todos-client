@@ -12,9 +12,9 @@ const IndexPage = () => (
     <div className="all-tasks">
       <h2 className="task-list-title">My Lists</h2>
       <ul className="task-list">
-        <li className="active-list">Youtube</li>
-        <li>Work</li>
-        <li>Groceries</li>
+        <li className="list-name active-list">Youtube</li>
+        <li className="list-name">Work</li>
+        <li className="list-name">Groceries</li>
       </ul>
       <form action="">
         <input
@@ -23,7 +23,7 @@ const IndexPage = () => (
           placeholder="new list name"
           aria-label="new list name"
         />
-        <button className="btn list" aria-label="create new list">
+        <button className="btn create" aria-label="create new list">
           +
         </button>
       </form>
@@ -48,8 +48,8 @@ const IndexPage = () => (
 
           {/* Task 2 */}
           <div className="task">
-            <input type="checkbox" id="task-1" />
-            <label htmlFor="task-1">
+            <input type="checkbox" id="task-2" />
+            <label htmlFor="task-2">
               <span className="custom-checkbox"></span>
               edit todo list video
             </label>
@@ -57,8 +57,8 @@ const IndexPage = () => (
 
           {/* Task 3 */}
           <div className="task">
-            <input type="checkbox" id="task-1" />
-            <label htmlFor="task-1">
+            <input type="checkbox" id="task-3" />
+            <label htmlFor="task-3">
               <span className="custom-checkbox"></span>
               publish todo list video
             </label>
@@ -73,7 +73,7 @@ const IndexPage = () => (
               placeholder="new task name"
               aria-label="new task name"
             />
-            <button className="btn task" aria-label="create new task">
+            <button className="btn create" aria-label="create new task">
               +
             </button>
           </form>
