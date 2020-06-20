@@ -9,13 +9,17 @@ const Tasks = () => {
   const [activeItem, setActiveItem] = useState(undefined)
   const [todos, setTodos] = useState([])
 
-  useEffect(() => {
+  const getTasks = () => {
     fetch("http://localhost:5000/api/v1/tasks")
       .then((res) => res.json())
       .then((json) => setTasks(json.data))
       .catch((err) => console.log(err))
-  }, [])
+  }
 
+  // Get Task List on Page Load
+  useEffect(() => getTasks(), [])
+
+  // Get Todo List on Active List Item Change or Set
   useEffect(() => {
     if (activeItem) {
       fetch(`http://localhost:5000/api/v1/todos/task/${activeItem}`)
@@ -33,7 +37,7 @@ const Tasks = () => {
         activeItem={activeItem}
         setActiveItem={setActiveItem}
       />
-      <AddTaskForm />
+      <AddTaskForm getTasks={getTasks} />
     </div>
   )
 }
