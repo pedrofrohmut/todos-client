@@ -26,7 +26,8 @@ body {
   display: grid;
   grid:
     "header header header header" auto
-    "...... lists  active ......" auto /
+    "...... lists  active ......" auto
+    "...... .....  delete ......" auto /
     1fr minmax(100px, 300px) minmax(250px, 500px) 1fr;
 }
 
@@ -266,12 +267,11 @@ form {
 }
 
 .delete-stuff {
+  grid-area: delete;
   display: flex;
   justify-content: space-evenly;
-  position: absolute;
-  width: 100%;
-  left: 0;
-  bottom: -32px;
+  position: relative;
+  top: 1.2em;
 }
 
 .btn.delete {

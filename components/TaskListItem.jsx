@@ -1,4 +1,4 @@
-const TaskListItem = ({ task, className, activeItem, setActiveItem }) => (
+const TaskListItem = ({ task, className, setActiveItem }) => (
   <li className={className} onClick={() => setActiveItem(task._id)}>
     {task.name}
   </li>
