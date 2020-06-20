@@ -73,7 +73,10 @@ const IndexPage = () => {
             <TodosHeader currentTask={currentTask} todos={todos} />
             <div className="todo-body">
               <TodoList todos={todos} />
-              <AddTodoForm getTodosByTaskId={getTodosByTaskId} />
+              <AddTodoForm
+                currentTask={currentTask}
+                getTodosByTaskId={getTodosByTaskId}
+              />
             </div>
           </div>
           <DeleteButtons currentTask={currentTask} todos={todos} />
