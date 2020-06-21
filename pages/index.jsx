@@ -37,6 +37,36 @@ const IndexPage = () => {
       .catch((err) => console.log(err))
   }
 
+  const setTodoAsCompleted = (todoId) => {
+    fetch(`http://localhost:5000/api/v1/todos/${todoId}/completed`, {
+      method: "PATCH"
+    })
+      .then((res) => res.json)
+      .then((json) => {
+        setTodos(
+          todos.map((todo) =>
+            todo._id !== todoId ? todo : { ...todo, isCompleted: true }
+          )
+        )
+      })
+      .catch((err) => console.log(err))
+  }
+
+  const setTodoAsNotCompleted = (todoId) => {
+    fetch(`http://localhost:5000/api/v1/todos/${todoId}/notcompleted`, {
+      method: "PATCH"
+    })
+      .then((res) => res.json)
+      .then((json) => {
+        setTodos(
+          todos.map((todo) =>
+            todo._id !== todoId ? todo : { ...todo, isCompleted: false }
+          )
+        )
+      })
+      .catch((err) => console.log(err))
+  }
+
   // Get Task List on Page Load
   useEffect(() => getTasks(), [])
 
@@ -72,7 +102,11 @@ const IndexPage = () => {
           <div className="todo-list">
             <TodosHeader currentTask={currentTask} todos={todos} />
             <div className="todo-body">
-              <TodoList todos={todos} />
+              <TodoList
+                todos={todos}
+                setTodoAsCompleted={setTodoAsCompleted}
+                setTodoAsNotCompleted={setTodoAsNotCompleted}
+              />
               <AddTodoForm
                 currentTask={currentTask}
                 getTodosByTaskId={getTodosByTaskId}
