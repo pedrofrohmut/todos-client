@@ -67,8 +67,39 @@ const IndexPage = () => {
       .catch((err) => console.log(err))
   }
 
+  const clearCompletedTodos = () => {
+    fetch(
+      `http://localhost:5000/api/v1/todos/clearcompleted/task/${activeItem}`,
+      {
+        method: "DELETE"
+      }
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        console.log("Todos Completed has been cleared")
+        getTodosByTaskId()
+      })
+      .catch((err) => console.log(err))
+  }
+
+  const deleteCurrentTask = () => {
+    fetch(`http://localhost:5000/api/v1/tasks/${activeItem}`, {
+      method: "DELETE"
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log("Task Deleted")
+        getTasks()
+        setActiveItem(undefined)
+        setCurrentTask(undefined)
+      })
+      .catch((err) => console.log(err))
+  }
+
   // Get Task List on Page Load
-  useEffect(() => getTasks(), [])
+  useEffect(() => {
+    getTasks()
+  }, [])
 
   // Get Todo List on Change or Set of an Active List Item
   useEffect(() => {
@@ -113,7 +144,13 @@ const IndexPage = () => {
               />
             </div>
           </div>
-          <DeleteButtons currentTask={currentTask} todos={todos} />
+          <DeleteButtons
+            currentTask={currentTask}
+            todos={todos}
+            clearCompletedTodos={clearCompletedTodos}
+            deleteCurrentTask={deleteCurrentTask}
+            getTodosByTaskId={getTodosByTaskId}
+          />
         </>
       )}
     </>

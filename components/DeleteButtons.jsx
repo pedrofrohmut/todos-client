@@ -1,7 +1,16 @@
-const DeleteButtons = ({ currentTask, todos }) => (
+const DeleteButtons = ({
+  currentTask,
+  todos,
+  clearCompletedTodos,
+  deleteCurrentTask
+}) => (
   <div className="delete-stuff">
-    <button className="btn delete">Clear completed task</button>
-    <button className="btn delete">Delete List</button>
+    <button className="btn delete" onClick={() => clearCompletedTodos()}>
+      Clear completed TODOs
+    </button>
+    <button className="btn delete" onClick={() => deleteCurrentTask()}>
+      Delete Current Task
+    </button>
   </div>
 )
 
